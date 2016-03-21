@@ -1,9 +1,12 @@
 # AndroidCustomViewsDemo
-这是 Android 自定义控件的一个 Demo 练习项目. modules 如下:
+这是 Android 自定义控件的一个 Demo 练习项目. modules 列表如下:
 
-[TOC]
+- <a href="#CustomRectangle">CustomRectangle 自定义矩形</a>
+- <a href="#CustomCircle">CustomCircle 自定义圆</a>
 
-## CustomRectangle 自定义矩形
+---
+
+## <span id="CustomRectangle">CustomRectangle 自定义矩形</span>
 
 一. **练习的目标:**   
 
@@ -43,12 +46,12 @@
     <br/><br/>
 
 三. **运行效果图:**   
-
-    ![运行效果图](image/运行效果图.png)
+    <br/>
+ ![运行效果图](image/运行效果图.png)
     
 ---
 
-## CustomCircle 自定义圆
+## <span id="CustomCircle">CustomCircle 自定义圆</span>
 一. **注意事项:**   
 
 1. 注意圆的半径的正确计算.   
