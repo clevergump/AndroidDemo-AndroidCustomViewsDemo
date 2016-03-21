@@ -1,2 +1,7 @@
-# AndroidDemo-AndroidCustomViewsDemo
-Android custom views demo.  Android 自定义控件的Demo工程.
+# AndroidCustomViewsDemo
+This is an Android custom views demo project.
+
+## Modules:
+1. **CustomRectangle:**   
+自定义长方形。
+

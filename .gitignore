@@ -1,0 +1,15 @@
+/.idea
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+/.gradle
+/AndroidDemo-CustomViewsDemo.iml
+/MyCommonLibrary/MyCommonLibrary.iml
+/MyCommonLibrary/build
+/CustomRectangle/CustomRectangle.iml
+/CustomRectangle/build
