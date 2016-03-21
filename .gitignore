@@ -8,6 +8,8 @@
 /build
 /captures
 /.gradle
+/CustomCircle/build
+/CustomCircle/CustomCircle.iml
 /AndroidDemo-CustomViewsDemo.iml
 /MyCommonLibrary/MyCommonLibrary.iml
 /MyCommonLibrary/build

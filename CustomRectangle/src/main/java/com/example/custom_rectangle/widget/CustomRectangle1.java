@@ -10,14 +10,15 @@ import android.view.View;
 import com.clevergump.my_common_library.utils.DensityUtils;
 
 /**
- * 自定义长方形
+ * 自定义长方形. 最基本的自定义控件. 主要练习自定义一个继承自View类的控件时, 要在onMeasure()方法中
+ * 处理wrap_content的情况.
  *
  * @author zhangzhiyi
  * @version 1.0
  * @createTime 2016/3/21 15:08
  * @projectName AndroidCustomViewsDemo
  */
-public class CustomRectangle extends View {
+public class CustomRectangle1 extends View {
     private Paint mPaint;
     // 默认宽度
     private int mDefWidth;
@@ -25,23 +26,25 @@ public class CustomRectangle extends View {
     private int mDefHeight;
 
 
-    public CustomRectangle(Context context) {
+    public CustomRectangle1(Context context) {
         super(context);
         init(context, null);
     }
 
-    public CustomRectangle(Context context, AttributeSet attrs) {
+    public CustomRectangle1(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public CustomRectangle(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CustomRectangle1(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
 
     private void init(Context context, AttributeSet attrs) {
+        // 默认宽度是屏幕宽度的1/4
         mDefWidth = DensityUtils.getScreenWidthPixels(context) >> 2;
+        // 默认高度是屏幕高度的1/4
         mDefHeight = DensityUtils.getScreenHeightPixels(context) >> 2;
         initPaint();
     }

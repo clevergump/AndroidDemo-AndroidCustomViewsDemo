@@ -1,1 +1,1 @@
-include ':CustomRectangle', ':MyCommonLibrary'
+include ':CustomRectangle', ':MyCommonLibrary', ':CustomCircle'

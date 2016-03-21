@@ -1,4 +1,4 @@
-package com.example.custom_rectangle;
+package com.example.custom_circle;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

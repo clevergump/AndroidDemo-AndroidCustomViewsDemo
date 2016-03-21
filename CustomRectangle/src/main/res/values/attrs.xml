@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomRectangle2">
+        <attr name="borderColor" format="color"/>
+        <attr name="borderWidth" format="dimension"/>
+        <attr name="contentColor" format="color"/>
+        <attr name="showContent" format="boolean"/>
+        <!-- 是否展示绘制逻辑错误的图形, 相当于通过展示反面教材来引起注意 -->
+        <attr name="showIncorrectDrawing" format="boolean"/>
+    </declare-styleable>
+</resources>

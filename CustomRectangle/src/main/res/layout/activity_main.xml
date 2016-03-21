@@ -1,12 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:customRectangle2="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.custom_rectangle.MainActivity">
 
-    <com.example.custom_rectangle.widget.CustomRectangle
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="下面都是因错误使用canvas.drawRect()方法而绘制出的与本意不符的图形:"/>
+
+    <com.example.custom_rectangle.widget.CustomRectangle2
         android:id="@+id/rec1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_below="@id/tv1"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        customRectangle2:borderColor="#550000ff"
+        customRectangle2:borderWidth="30dp"
+        customRectangle2:contentColor="#88ff0000"
+        customRectangle2:showContent="true"
+        customRectangle2:showIncorrectDrawing="true"/>
+
+    <com.example.custom_rectangle.widget.CustomRectangle2
+        android:id="@+id/rec2"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_toRightOf="@id/rec1"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@id/tv1"
+        customRectangle2:borderColor="#550000ff"
+        customRectangle2:borderWidth="30dp"
+        customRectangle2:contentColor="#8800ff00"
+        customRectangle2:showContent="true"
+        customRectangle2:showIncorrectDrawing="true"/>
+
+    <com.example.custom_rectangle.widget.CustomRectangle2
+        android:id="@+id/rec3"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_below="@id/rec1"
+        android:layout_marginTop="30dp"
+        android:layout_alignLeft="@id/rec1"
+        customRectangle2:borderColor="#550000ff"
+        customRectangle2:borderWidth="30dp"
+        customRectangle2:contentColor="#8800ff00"
+        customRectangle2:showContent="true"
+        customRectangle2:showIncorrectDrawing="true"/>
+
+    <com.example.custom_rectangle.widget.CustomRectangle2
+        android:id="@+id/rec4"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_toRightOf="@id/rec3"
+        android:layout_marginLeft="20dp"
+        android:layout_alignBottom="@id/rec3"
+        customRectangle2:borderColor="#550000ff"
+        customRectangle2:borderWidth="10dp"
+        customRectangle2:contentColor="#8800ff00"
+        customRectangle2:showContent="true"
+        customRectangle2:showIncorrectDrawing="true"/>
+
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"
+        android:layout_below="@id/rec3"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/divider1"
+        android:layout_marginTop="20dp"
+        android:text="下面都是正确使用canvas.drawRect()方法而绘制出的与本意相符的图形:"/>
+
+
+    <com.example.custom_rectangle.widget.CustomRectangle2
+        android:id="@+id/rec5"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_below="@id/tv2"
+        customRectangle2:borderColor="#550000ff"
+        customRectangle2:borderWidth="30dp"
+        customRectangle2:contentColor="#8800ff00"
+        customRectangle2:showContent="true"
+        customRectangle2:showIncorrectDrawing="false"/>
+
+    <com.example.custom_rectangle.widget.CustomRectangle2
+        android:id="@+id/rec6"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_toRightOf="@id/rec5"
+        android:layout_marginLeft="30dp"
+        android:layout_alignBottom="@id/rec5"
+        customRectangle2:borderColor="#550000ff"
+        customRectangle2:borderWidth="10dp"
+        customRectangle2:contentColor="#8800ff00"
+        customRectangle2:showContent="true"
+        customRectangle2:showIncorrectDrawing="false"/>
+
+    <com.example.custom_rectangle.widget.CustomRectangle2
+        android:id="@+id/rec7"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_below="@id/rec5"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        customRectangle2:borderColor="#550000ff"
+        customRectangle2:borderWidth="30dp"
+        customRectangle2:contentColor="#88ff0000"
+        customRectangle2:showContent="true"
+        customRectangle2:showIncorrectDrawing="false"/>
+
+
+<!--    <com.example.custom_rectangle.widget.CustomRectangle2
+        android:id="@+id/rec2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/rec1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        customRectangle2:borderColor="#0000ff"
+        customRectangle2:borderWidth="20dp"
+        customRectangle2:contentColor="#88ff0000"
+        android:background="#8800ff00"/>-->
+
+ <!--   <View
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#33ff0000"
+        android:layout_alignBottom="@id/rec1"/>-->
 </RelativeLayout>
