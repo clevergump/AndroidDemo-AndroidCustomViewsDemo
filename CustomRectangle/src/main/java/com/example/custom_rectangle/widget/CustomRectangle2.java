@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Toast;
 
 import com.clevergump.my_common_library.utils.DensityUtils;
 import com.example.custom_rectangle.R;
@@ -52,6 +51,7 @@ public class CustomRectangle2 extends View {
     // 内容颜色
     // Color.TRANSPARENT = 0; 所以如果不在此赋值, 那么该颜色将默认是透明色, 所以在屏幕上是看不到的.
     private int mContentColor = DEF_CONTENT_COLOR;
+    // 边框的宽度
     private float mBorderWidth;
     // 是否显示图形的内容. 默认是true, 即:默认是显示. 如果为false, 则只显示边框不显示内容.
     private boolean mShowContent = true;
@@ -152,17 +152,19 @@ public class CustomRectangle2 extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Toast.makeText(getContext(), "right = " + getRight() + ", width = " + getWidth(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(getContext(), "right = " + getRight() + ", width = " + getWidth(), Toast.LENGTH_LONG).show();
+        // 边框宽度的一半.
         float halfBorderWidth = mBorderWidth / 2;
 
-        // 注意两点:
-        // 1. canvas.drawRect()绘制有stroke的矩形时, 需要绘制的四条边的坐标分别是四条粗线内部的中心线的坐标.
-        // 2. canvas.drawRect()方法中要赋值的四个坐标, 是相对于该控件左上角那个点的坐标, 而不是相对于父控件或屏幕的坐标.
+        // 注意:
+        // canvas.drawRect()绘制有stroke的矩形时, 需要绘制的四条边的坐标其实是相对于四条边内部的中心线所
+        // 组成的矩形的左上角那个点的距离, 而不是相对于父控件或屏幕的坐标.
         canvas.drawRect(halfBorderWidth, halfBorderWidth, getWidth() - halfBorderWidth,
             getHeight() - halfBorderWidth, mBorderPaint);
         if (mShowContent) {
 
-            // canvas.drawRect()方法的四个坐标是相对于该控件左上角那个点的坐标, 而不是相对于父控件或屏幕的坐标.
+            // 注意:
+            // canvas.drawRect()绘制 Fill 的矩形时, 四个坐标是相对于该矩形左上角那个点的坐标, 而不是相对于父控件或屏幕的坐标.
             // 对比:
             // View.getLeft(), getRight(), getTop(), getBottom()得到的坐标是四条边相对于父控件的坐标,
             // 而不是相对于该控件左上角那个点的坐标. 与canvas.drawRect()方法的四个坐标的含义不同.

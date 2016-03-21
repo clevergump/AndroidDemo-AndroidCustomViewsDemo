@@ -44,7 +44,7 @@ public class CustomCircle1 extends View {
     private void init(Context context, AttributeSet attrs) {
         mDefSize = DensityUtils.dip2px(context, 100);
         mDefBorderWidth = DensityUtils.dip2px(getContext(), 10);
-        // 圆的半径等于圆心到圆边框中心线(圆的外边框和内边框二者之间的那条中心线)的距离
+        // 注意: 圆的半径等于圆心到圆的内外两个边框之间的中心线的距离
         mDefBorderCircleRadius = mDefSize / 2 - mDefBorderWidth / 2;
         initPaint();
     }

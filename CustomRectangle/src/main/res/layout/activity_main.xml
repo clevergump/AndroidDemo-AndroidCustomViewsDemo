@@ -10,7 +10,7 @@
         android:id="@+id/tv1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="下面都是因错误使用canvas.drawRect()方法而绘制出的与本意不符的图形:"/>
+        android:text="下面都是因错误使用 Canvas.drawRect()方法而绘制出的与本意不符的图形:"/>
 
     <com.example.custom_rectangle.widget.CustomRectangle2
         android:id="@+id/rec1"
@@ -79,7 +79,7 @@
         android:layout_height="50dp"
         android:layout_below="@id/divider1"
         android:layout_marginTop="20dp"
-        android:text="下面都是正确使用canvas.drawRect()方法而绘制出的与本意相符的图形:"/>
+        android:text="下面都是正确使用 Canvas.drawRect()方法而绘制出的与本意相符的图形:"/>
 
 
     <com.example.custom_rectangle.widget.CustomRectangle2
@@ -119,22 +119,4 @@
         customRectangle2:showContent="true"
         customRectangle2:showIncorrectDrawing="false"/>
 
-
-<!--    <com.example.custom_rectangle.widget.CustomRectangle2
-        android:id="@+id/rec2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/rec1"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        customRectangle2:borderColor="#0000ff"
-        customRectangle2:borderWidth="20dp"
-        customRectangle2:contentColor="#88ff0000"
-        android:background="#8800ff00"/>-->
-
- <!--   <View
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#33ff0000"
-        android:layout_alignBottom="@id/rec1"/>-->
 </RelativeLayout>
