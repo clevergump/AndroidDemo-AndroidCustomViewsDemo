@@ -4,9 +4,13 @@
 - <a href="#customrectangle">CustomRectangle 自定义矩形</a>
 - <a href="#customcircle">CustomCircle 自定义圆</a>
 
+
+
+
+
 ---
 
-## <span id="CustomRectangle">CustomRectangle 自定义矩形</span>
+## <span id="CustomRectangle">CustomRectangle</span>
 
 ####1. **练习的目标:**   
 - 一个继承自View类的控件, 需要让 `onMeasure()` 方法处理layout文件中为长宽设置为 `wrap_content` 时的情况 (详情见 
@@ -43,7 +47,7 @@
 
 ---
 
-## <span id="CustomCircle">CustomCircle 自定义圆</span>
+## <span id="CustomCircle">CustomCircle</span>
 
 ####1. **注意事项:**   
 - 注意圆的半径的正确计算.   
@@ -62,3 +66,20 @@
 [CustomRectangle 自定义矩形-canvas.drawRect()的参数说明]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/image/canvas.drawRect()%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E.png
 [CustomRectangle 自定义矩形-运行效果图]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/image/%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E5%9B%BE.png
 [CustomCircle 自定义圆-使用Stroke的画笔绘制圆]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomCircle/image/%E4%BD%BF%E7%94%A8Stroke%E7%9A%84%E7%94%BB%E7%AC%94%E7%BB%98%E5%88%B6%E5%9C%86.png
+
+
+
+
+> ***GitHub Markdown tips:***   
+在使用超链接在文档内部跳转时, 超链接#后边的内容在Github上是有特殊要求的:   
+1. 所有 `<span>` 标签的id属性的数值中所有英文都会自动转为小写字母. 所以, 我们在写文档内跳转的超链接时, 需写成如下形式: `<a href="#全部小写字母">`. 例如:   
+```html
+<a href="#customrectangle">CustomRectangle 自定义矩形</a>
+<a href="#customcircle">CustomCircle 自定义圆</a>
+```   
+<br/>
+2. 所有 `<span>` 标签对之间的文字内容如有中文, 则都会在id属性的数值中自动添加该中文, 具体格式待验证. 本文使用的是
+```html
+<a href="customrectangle-自定义矩形">CustomRectangle 自定义矩形</a>
+<a href="#customcircle-自定义圆">CustomCircle 自定义圆</a>
+```
