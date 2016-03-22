@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:CustomCircle3="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.custom_circle.MainActivity">
 
     <com.example.custom_circle.widget.CustomCircle1
+        android:id="@+id/circle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:background="#33ff0000"/>
+
+    <com.example.custom_circle.widget.CustomCircle2
+        android:id="@+id/circle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/circle1"
+        android:layout_marginLeft="20dp"
+        android:layout_alignTop="@id/circle1"
+        android:background="#3300ff00"/>
+
+    <com.example.custom_circle.widget.CustomCircle3
+        android:id="@+id/circle3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/circle1"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        CustomCircle3:circleOuterRadius="70dp"
+        CustomCircle3:circleBorderWidth="10dp"
+        CustomCircle3:circleBorderColor="#33B5E5"
+        CustomCircle3:innerPieColor="#55ff0000"
+        CustomCircle3:innerPieStartingAngle="-90"
+        CustomCircle3:innerPieMaxProgress="100"
+        CustomCircle3:innerPieProgress="25"
+        android:background="#5500ff00"/>
+
+
+    <com.example.custom_circle.widget.CustomCircle3
+        android:id="@+id/circle4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_toRightOf="@id/circle3"
+        android:layout_marginLeft="20dp"
+        android:layout_alignTop="@id/circle3"
+        CustomCircle3:circleOuterRadius="40dp"
+        CustomCircle3:circleBorderWidth="10dp"
+        CustomCircle3:circleBorderColor="#33B5E5"
+        CustomCircle3:innerPieColor="#55ff0000"
+        CustomCircle3:innerPieStartingAngle="20"
+        CustomCircle3:innerPieMaxProgress="100"
+        CustomCircle3:innerPieProgress="33"
+        android:background="#5500ff00"/>
 </RelativeLayout>
