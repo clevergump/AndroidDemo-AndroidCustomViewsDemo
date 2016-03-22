@@ -2,11 +2,11 @@
 
 一. **练习的目标:**   
 
-1. 一个继承自View类的控件, 需要让 `onMeasure()` 方法处理layout文件中为长宽设置为 `wrap_content` 时的情况 (详情见 [CustomRectangle1.java](src/main/java/com.example.custom_rectangle.widget.CustomRectangle1)).
+1. 一个继承自View类的控件, 需要让 `onMeasure()` 方法处理layout文件中为长宽设置为 `wrap_content` 时的情况 (详情见 [CustomRectangle1.java](src/main/java/com/example/custom_rectangle/widget/CustomRectangle1.java)).
 原因请见<a href="http://blog.csdn.net/clevergump/article/details/50545257" target="_blank">这篇文章</a>的分析.
-2. 自定义属性的用法. (详情见 [CustomRectangle2.java](src/main/java/com.example.custom_rectangle.widget.CustomRectangle2))
+2. 自定义属性的用法. (详情见 [CustomRectangle2.java](src/main/java/com/example/custom_rectangle/widget/CustomRectangle2.java))
 3. 绘制矩形时, `Canvas.drawRect(float left, float top, float right, float bottom, Paint paint)` 
-方法各参数<font color="red">含义</font>的正确理解. (详情见 [CustomRectangle2.java](src/main/java/com.example.custom_rectangle.widget.CustomRectangle2))
+方法各参数<font color="red">含义</font>的正确理解. (详情见 [CustomRectangle2.java](src/main/java/com/example/custom_rectangle/widget/CustomRectangle2.java))
 <br/><br/>
 
 二. **注意事项:**   
@@ -38,7 +38,7 @@
     <br/><br/>
 
 三. **运行效果图:**   
-
-    ![运行效果图](image/运行效果图.png)
+    <br/>
+![运行效果图](image/运行效果图.png)
     
     
