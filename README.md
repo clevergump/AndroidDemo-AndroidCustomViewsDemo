@@ -6,7 +6,7 @@
 
 ---
 
-## <span id="CustomRectangle">CustomRectangle 自定义矩形</span>
+## <span id="CustomRectangle">CustomRectangle</span>
 
 ####1. **练习的目标:**   
 - 一个继承自View类的控件, 需要让 `onMeasure()` 方法处理layout文件中为长宽设置为 `wrap_content` 时的情况 (详情见 
@@ -43,7 +43,7 @@
 
 ---
 
-## <span id="CustomCircle">CustomCircle 自定义圆</span>
+## <span id="CustomCircle">CustomCircle</span>
 
 ####1. **注意事项:**   
 - 注意圆的半径的正确计算.   
