@@ -1,8 +1,8 @@
 # AndroidCustomViewsDemo
 这是 Android 自定义控件的一个 Demo 练习项目. modules 列表如下:
 
-- <a href="#CustomRectangle">CustomRectangle 自定义矩形</a>
-- <a href="#CustomCircle">CustomCircle 自定义圆</a>
+- <a href="#customrectangle">CustomRectangle 自定义矩形</a>
+- <a href="#customcircle">CustomCircle 自定义圆</a>
 
 ---
 
