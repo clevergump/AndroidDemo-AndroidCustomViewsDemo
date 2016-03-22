@@ -1,8 +1,8 @@
 # AndroidCustomViewsDemo
 这是 Android 自定义控件的一个 Demo 练习项目. modules 列表如下:
 
-- [CustomRectangle 自定义矩形](#CustomRectangle)
-- [CustomCircle 自定义圆](#CustomCircle)
+- <a href="https://github.com/clevergump/AndroidDemo-CustomViewsDemo/edit/master/README.md#CustomRectangle">CustomRectangle 自定义矩形</a>
+- [CustomCircle 自定义圆](https://github.com/clevergump/AndroidDemo-CustomViewsDemo/edit/master/README.md#CustomCircle)
 
 ---
 
@@ -10,11 +10,12 @@
 
 一. **练习的目标:**   
 
-1. 一个继承自View类的控件, 需要让 `onMeasure()` 方法处理layout文件中为长宽设置为 `wrap_content` 时的情况 (详情见 [CustomRectangle1.java](src/main/java/com/example/custom_rectangle/widget/CustomRectangle1.java)).
+1. 一个继承自View类的控件, 需要让 `onMeasure()` 方法处理layout文件中为长宽设置为 `wrap_content` 时的情况 (详情见 
+[CustomRectangle1.java][]).
 原因请见<a href="http://blog.csdn.net/clevergump/article/details/50545257" target="_blank">这篇文章</a>的分析.
-2. 自定义属性的用法. (详情见 [CustomRectangle2.java](src/main/java/com/example/custom_rectangle/widget/CustomRectangle2.java))
+2. 自定义属性的用法. (详情见 [CustomRectangle2.java][])
 3. 绘制矩形时, `Canvas.drawRect(float left, float top, float right, float bottom, Paint paint)` 
-方法各参数<font color="red">含义</font>的正确理解. (详情见 [CustomRectangle2.java](src/main/java/com/example/custom_rectangle/widget/CustomRectangle2.java))
+方法各参数<font color="red">含义</font>的正确理解. (详情见 [CustomRectangle2.java][])
 <br/><br/>
 
 二. **注意事项:**   
@@ -32,7 +33,7 @@
       这四个参数的含义是相对于该矩形四条边框各自的中线所组成的矩形的左上角那个点的水平或垂直距离, 而不是相对于其父控件左上角的点或者手机屏幕左上角的点的距离.   
 
     我们可以用下图来描述上述两种情况:   
-    ![canvas.drawRect()的参数说明](image/canvas.drawRect()参数说明.png)   
+    ![canvas.drawRect()的参数说明][CustomRectangle 自定义矩形-canvas.drawRect()的参数说明] 
     
     - 如果是使用 `Paint.Style.Fill` 的 `Paint` 绘制图中内部的那个小矩形(也就是以B点作为左上角的那四条黑线所组成的矩形), 
     那么该方法中的四个坐标参数就是相对于B点的距离.
@@ -47,7 +48,7 @@
 
 三. **运行效果图:**   
     <br/>
-![运行效果图](image/运行效果图.png)
+![运行效果图][CustomRectangle 自定义矩形-运行效果图]
     
 ---
 
@@ -60,7 +61,7 @@
    那么在调用 `Canvas.drawCircle(float cx, float cy, float radius, Paint paint)` 方法时, 
    圆半径 radius 是等于圆心到这个圆环内外两个圆边框正中间的那个中心圆的距离. 我们可以用下图来帮助理解:
    
-    ![使用Stroke的画笔绘制圆](image/使用Stroke的画笔绘制圆.png)
+    ![使用Stroke的画笔绘制圆][CustomCircle 自定义圆-使用Stroke的画笔绘制圆]
    
     如上图所示, 如果我们要使用 `Stroke` 样式的 `Paint` 来绘制上图中边框A和B组成的圆环, 那么我们在调用
     `Canvas.drawCircle(float cx, float cy, float radius, Paint paint)` 方法时, 需要传入的半径
@@ -68,3 +69,11 @@
    
 ---
 
+
+
+
+[CustomRectangle1.java]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/src/main/java/com/example/custom_rectangle/widget/CustomRectangle1.java
+[CustomRectangle2.java]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/src/main/java/com/example/custom_rectangle/widget/CustomRectangle2.java
+[CustomRectangle 自定义矩形-canvas.drawRect()的参数说明]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/image/canvas.drawRect()%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E.png
+[CustomRectangle 自定义矩形-运行效果图]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/image/%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E5%9B%BE.png
+[CustomCircle 自定义圆-使用Stroke的画笔绘制圆]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomCircle/image/%E4%BD%BF%E7%94%A8Stroke%E7%9A%84%E7%94%BB%E7%AC%94%E7%BB%98%E5%88%B6%E5%9C%86.png
