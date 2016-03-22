@@ -14,7 +14,7 @@ import com.clevergump.my_common_library.utils.DensityUtils;
 import com.example.custom_circle.R;
 
 /**
- * 带有自定义属性的圆+圆内的扇形.
+ * 带有自定义属性的圆+圆内绘制角度(sweepAngle)可控制的扇形
  *
  * @author zhangzhiyi
  * @version 1.0
@@ -24,7 +24,7 @@ import com.example.custom_circle.R;
 public class CustomCircle3 extends View {
 
     private static final String TAG = CustomCircle3.class.getSimpleName();
-    // 默认宽高, 单位dp.
+    // 默认宽高的数值, 单位dp.
     public static final int DEF_SIZE_IN_DP = 100;
     // 圆边框的默认宽度, 单位dp.
     public static final int DEF_CIRCLE_BORDER_WIDTH_IN_DP = 3;
@@ -43,17 +43,18 @@ public class CustomCircle3 extends View {
     // 绘制圆内扇形的画笔
     private Paint mContentPaint;
 
-    // 默认宽高
+    // 默认宽高的变量
     private float mDefSize;
     // 边框的默认宽度
     private float mDefCircleBorderWidth;
-    // 圆半径的默认值
+    // 圆的外边框半径的默认值 (这个圆因为有边框厚度, 所以有外边框和内边框)
     private float mDefCircleOuterRadius;
     // 圆内画弧线时的矩形外框.
     private RectF mInnerArcRectF;
 
     // 绘制圆时, 调用 Canvas.drawCircle()方法时需要传入的半径值.
     private float mCircleRadius;
+
 
     /****************** 下面是自定义属性 ***************************/
 //    <!-- 如果圆的边框是有宽度(厚度)的, 那么 circleRadius特指该圆的外边框的半径, 实际在绘制该圆时,
@@ -222,11 +223,17 @@ public class CustomCircle3 extends View {
         mCircleRadius = mCircleOuterRadius - mCircleBorderWidth / 2;
     }
 
+    /**
+     * 初始化画笔
+     */
     private void initPaint() {
         initBorderPaint();
         initContentPaint();
     }
 
+    /**
+     * 初始化绘制边框的画笔
+     */
     private void initBorderPaint() {
         mBorderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mBorderPaint.setColor(mCircleBorderColor);
@@ -234,6 +241,9 @@ public class CustomCircle3 extends View {
         mBorderPaint.setStrokeWidth(mCircleBorderWidth);
     }
 
+    /**
+     * 初始化绘制圆内扇形的画笔
+     */
     private void initContentPaint() {
         mContentPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mContentPaint.setColor(mInnerPieColor);
