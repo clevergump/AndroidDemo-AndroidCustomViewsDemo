@@ -35,7 +35,7 @@
 
 
 
-[CustomRectangle1.java]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/src/main/java/com/example/custom_rectangle/widget/CustomRectangle1.java
-[CustomRectangle2.java]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/src/main/java/com/example/custom_rectangle/widget/CustomRectangle2.java
-[CustomRectangle 自定义矩形-canvas.drawRect()的参数说明]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/image/canvas.drawRect()%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E.png
-[CustomRectangle 自定义矩形-运行效果图]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/image/%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E5%9B%BE.png
+[CustomRectangle1.java]: src/main/java/com/example/custom_rectangle/widget/CustomRectangle1.java
+[CustomRectangle2.java]: src/main/java/com/example/custom_rectangle/widget/CustomRectangle2.java
+[CustomRectangle 自定义矩形-canvas.drawRect()的参数说明]: image/canvas.drawRect()的参数说明.png
+[CustomRectangle 自定义矩形-运行效果图]: image/运行效果图.png

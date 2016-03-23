@@ -64,12 +64,11 @@
 
 
 
-
-[CustomRectangle1.java]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/src/main/java/com/example/custom_rectangle/widget/CustomRectangle1.java
-[CustomRectangle2.java]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/src/main/java/com/example/custom_rectangle/widget/CustomRectangle2.java
-[CustomRectangle 自定义矩形-canvas.drawRect()的参数说明]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/image/canvas.drawRect()%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E.png
-[CustomRectangle 自定义矩形-运行效果图]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/image/%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E5%9B%BE.png
-[CustomCircle 自定义圆-使用Stroke的画笔绘制圆]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomCircle/image/%E4%BD%BF%E7%94%A8Stroke%E7%9A%84%E7%94%BB%E7%AC%94%E7%BB%98%E5%88%B6%E5%9C%86.png
+[CustomRectangle1.java]: CustomRectangle/src/main/java/com/example/custom_rectangle/widget/CustomRectangle1.java
+[CustomRectangle2.java]: CustomRectangle/src/main/java/com/example/custom_rectangle/widget/CustomRectangle2.java
+[CustomRectangle 自定义矩形-canvas.drawRect()的参数说明]: CustomRectangle/image/canvas.drawRect()的参数说明.png
+[CustomRectangle 自定义矩形-运行效果图]: CustomRectangle/image/运行效果图.png
+[CustomCircle 自定义圆-使用Stroke的画笔绘制圆]: CustomCircle/image/使用Stroke的画笔绘制圆.png
 [CustomCircle 自定义圆-运行效果图]: CustomCircle/image/运行效果图.gif
 
 

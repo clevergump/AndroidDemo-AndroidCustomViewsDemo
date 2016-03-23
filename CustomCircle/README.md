@@ -15,5 +15,5 @@
 
 
 
-[CustomCircle 自定义圆-使用Stroke的画笔绘制圆]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomCircle/image/%E4%BD%BF%E7%94%A8Stroke%E7%9A%84%E7%94%BB%E7%AC%94%E7%BB%98%E5%88%B6%E5%9C%86.png
+[CustomCircle 自定义圆-使用Stroke的画笔绘制圆]: image/使用Stroke的画笔绘制圆.png
 [CustomCircle 自定义圆-运行效果图]: image/运行效果图.gif
