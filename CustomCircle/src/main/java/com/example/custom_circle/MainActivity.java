@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mCircle1 = (CustomCircle3) findViewById(R.id.circle3);
+        mCircle1 = (CustomCircle3) findViewById(R.id.circle5);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 while (progress < maxProgress) {
                     try {
                         progress += 1;
-                        Thread.sleep(50);
+                        Thread.sleep(100);
                         mCircle1.setProgress(progress);
                     } catch (InterruptedException e) {
                         e.printStackTrace();

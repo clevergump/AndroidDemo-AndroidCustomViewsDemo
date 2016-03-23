@@ -37,7 +37,7 @@
         CustomCircle3:innerPieColor="#33B5E5"
         CustomCircle3:innerPieStartingAngle="-90"
         CustomCircle3:innerPieMaxProgress="100"
-        CustomCircle3:innerPieProgress="25"
+        CustomCircle3:innerPieProgress="65"
         android:background="#5500ff00"/>
 
     <com.example.custom_circle.widget.CustomCircle3
@@ -53,7 +53,7 @@
         CustomCircle3:innerPieColor="#88ff0000"
         CustomCircle3:innerPieStartingAngle="-90"
         CustomCircle3:innerPieMaxProgress="100"
-        CustomCircle3:innerPieProgress="33"
+        CustomCircle3:innerPieProgress="30"
         android:background="#5500ff00"/>
 
     <com.example.custom_circle.widget.CustomCircle3

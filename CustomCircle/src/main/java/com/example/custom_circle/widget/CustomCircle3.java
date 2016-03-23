@@ -15,7 +15,7 @@ import com.example.custom_circle.R;
 
 
 /**
- * 带有自定义属性的圆+圆内绘制角度(sweepAngle)可控制的扇形
+ * 带有自定义属性的圆+圆内绘制角度(sweepAngle)可控制的扇形.
  *
  * @author zhangzhiyi
  * @version 1.0
@@ -36,7 +36,7 @@ public class CustomCircle3 extends View {
     // 扇形的最大进度, 进度达到最大进度时, 这个扇形就是一个圆.
     private static final int DEF_MAX_PROGRESS = 100;
     // 扇形的默认绘制进度.
-    private static final int DEF_PROGRESS = 25;
+    private static final int DEF_PROGRESS = 0;
     // 绘制扇形的默认起始角度.
     private static final float DEF_PIE_STARGING_ANGLE = -90;
 
@@ -45,6 +45,8 @@ public class CustomCircle3 extends View {
     private Paint mBorderPaint;
     // 绘制圆内扇形的画笔
     private Paint mContentPaint;
+    // 绘制进度百分比文字描述的画笔
+    private Paint mProgressTextPaint;
 
     // 默认宽高的变量
     private float mDefSize;
@@ -90,6 +92,8 @@ public class CustomCircle3 extends View {
     private float mInnerPieStartingAngle;
     // 实际宽高的一半, 通常用来和用户设置的圆的外边框的半径进行比较, 然后选择二者中的较小者作为圆的外边框半径的实际值.
     private int mHalfSize;
+    // 用于描述进度百分比文字的 StringBuilder对象
+    private StringBuilder mProgressPercentageTextSb = new StringBuilder();
 
 
     public CustomCircle3(Context context) {
@@ -179,15 +183,15 @@ public class CustomCircle3 extends View {
             return;
         }
 
-        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.CustomCircle3, defStyleAttr, 0);
+        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.CustomCircle, defStyleAttr, 0);
         int indexCount = a.getIndexCount();
         for (int i=0; i< indexCount; i++) {
             int index = a.getIndex(i);
             switch (index) {
-                case R.styleable.CustomCircle3_circleBorderColor:
+                case R.styleable.CustomCircle_circleBorderColor:
                     mCircleBorderColor = a.getColor(index, DEF_CIRCLE_BORDER_COLOR);
                     break;
-                case R.styleable.CustomCircle3_circleBorderWidth:
+                case R.styleable.CustomCircle_circleBorderWidth:
                     // getDimension(), getDimensionPixelSize(), getDimensionPixelOffset()的对比:
                     // 不同点:
                     //      getDimension()方法返回 float.
@@ -195,22 +199,22 @@ public class CustomCircle3 extends View {
                     // 相同点: 都会将我们设置的dp为单位的数值自动转换为以px为单位的数值, 所以无需我们操心了, 具体看源码.
                     mCircleBorderWidth = a.getDimension(index, mCircleBorderWidth);
                     break;
-                case R.styleable.CustomCircle3_circleOuterRadius:
+                case R.styleable.CustomCircle_circleOuterRadius:
                     mCircleOuterRadius = a.getDimension(index, mCircleOuterRadius);
                     break;
-                case R.styleable.CustomCircle3_innerPieColor:
+                case R.styleable.CustomCircle_innerPieColor:
                     mInnerPieColor = a.getColor(index, DEF_INNER_PIE_COLOR);
                     break;
-                case R.styleable.CustomCircle3_innerPieMaxProgress:
+                case R.styleable.CustomCircle_innerPieMaxProgress:
                     // getInt() 和 getInteger()方法的区别:
                     //  getInt(): 如果实际设置的不是整数, 那么将会调用 Integer.decode(String) 将设置的数值强制转换为int值, 而不抛异常.
                     //  getInteger(): 如果实际设置的不是整数, 将会抛异常.
                     mInnerPieMaxProgress = a.getInt(index, DEF_MAX_PROGRESS);
                     break;
-                case R.styleable.CustomCircle3_innerPieProgress:
+                case R.styleable.CustomCircle_innerPieProgress:
                     mInnerPieProgress = a.getInt(index, DEF_PROGRESS);
                     break;
-                case R.styleable.CustomCircle3_innerPieStartingAngle:
+                case R.styleable.CustomCircle_innerPieStartingAngle:
                     mInnerPieStartingAngle = a.getFloat(index, DEF_PIE_STARGING_ANGLE);
                     break;
                 default:
@@ -234,6 +238,7 @@ public class CustomCircle3 extends View {
     private void initPaint() {
         initBorderPaint();
         initContentPaint();
+        initProgressTextPaint();
     }
 
     /**
@@ -244,6 +249,15 @@ public class CustomCircle3 extends View {
         mBorderPaint.setColor(mCircleBorderColor);
         mBorderPaint.setStyle(Paint.Style.STROKE);
         mBorderPaint.setStrokeWidth(mCircleBorderWidth);
+    }
+
+    /**
+     * 初始化绘制进度百分比文字描述的画笔
+     */
+    private void initProgressTextPaint() {
+        mProgressTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mProgressTextPaint.setColor(Color.BLACK);
+        mProgressTextPaint.setTextSize(DensityUtils.sp2px(getContext(), 15));
     }
 
     /**
@@ -260,8 +274,25 @@ public class CustomCircle3 extends View {
         // 为了保证圆的外边框半径不能超过控件本身的1/2尺寸, 并且圆的边框厚度不能超过圆的外边框半径,
         // 需要重新计算相关数值.
         recalcValues();
+        drawCircle(canvas);
+        drawInnerPie(canvas);
+        drawProgressPercentText(canvas);
+    }
+
+    /**
+     * 绘制扇形外边的圆
+     * @param canvas
+     */
+    private void drawCircle(Canvas canvas) {
         // 圆心的两个坐标也是相对于该控件自身左上角的点的距离, 不是相对于其父控件左上角的点的距离.
         canvas.drawCircle(mHalfSize, mHalfSize, mCircleRadius, mBorderPaint);
+    }
+
+    /**
+     * 绘制圆内的扇形
+     * @param canvas
+     */
+    private void drawInnerPie(Canvas canvas) {
         if (mInnerArcRectF == null) {
             float innerCircleOffset = mHalfSize - mCircleInnerRadius;
             mInnerArcRectF = new RectF(innerCircleOffset, innerCircleOffset,
@@ -270,6 +301,28 @@ public class CustomCircle3 extends View {
         float sweepAngle = 1.0f * 360 * mInnerPieProgress / mInnerPieMaxProgress;
         // 绘制弧线/扇形时的坐标, 或者外围矩形的坐标是相对于该控件自身左上角的点的距离, 不是相对于其父控件左上角的点的距离.
         canvas.drawArc(mInnerArcRectF, mInnerPieStartingAngle, sweepAngle, true, mContentPaint);
+    }
+
+    /**
+     * 绘制进度百分比的文字
+     * @param canvas
+     */
+    private void drawProgressPercentText(Canvas canvas) {
+        String progressPercentText;
+        if (mInnerPieMaxProgress == 100) {
+            progressPercentText = mInnerPieProgress + "%";
+        } else {
+            // 获取以100为最大进度时的当前进度值.
+            int convertedProgress = (int)(1.0f * mInnerPieProgress / mInnerPieMaxProgress * 100) ;
+            progressPercentText = convertedProgress + "%";
+        }
+        // Paint.measureText(String): 获取给定文字的宽度
+        float baselineX = canvas.getWidth() / 2 - mProgressTextPaint.measureText(progressPercentText) / 2;
+        // 当文字刚好处于垂直居中时的基准线Y坐标值(这个坐标对应的水平线一般都是位于水平居中线的下方, 可以自己推算).
+        //      关于文字的 ascent, descent, baseline, top, bottom 的知识以及该计算式请见爱哥的文章:
+        //      自定义控件其实很简单1/4 (http://blog.csdn.net/aigestudio/article/details/41447349)
+        float baselineY = canvas.getHeight() / 2 - (mProgressTextPaint.ascent() + mProgressTextPaint.descent()) / 2;
+        canvas.drawText(progressPercentText, baselineX, baselineY, mProgressTextPaint);
     }
 
     /**

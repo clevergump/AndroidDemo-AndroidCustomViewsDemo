@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="CustomCircle3">
+    <declare-styleable name="CustomCircle">
         <!-- 如果圆的边框是有宽度(厚度)的, 那么 circleRadius特指该圆的外边框的半径, 实际在绘制该圆时,
             绘制所用的半径是该 circleRadius减去圆边框厚度的 1/2后的值 -->
         <attr name="circleOuterRadius" format="dimension"/>
