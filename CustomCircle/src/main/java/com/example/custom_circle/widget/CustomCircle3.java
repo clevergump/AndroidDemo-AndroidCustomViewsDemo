@@ -6,12 +6,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.os.*;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.clevergump.my_common_library.utils.DensityUtils;
 import com.example.custom_circle.R;
+
 
 /**
  * 带有自定义属性的圆+圆内绘制角度(sweepAngle)可控制的扇形
@@ -25,15 +26,17 @@ public class CustomCircle3 extends View {
 
     private static final String TAG = CustomCircle3.class.getSimpleName();
     // 默认宽高的数值, 单位dp.
-    public static final int DEF_SIZE_IN_DP = 100;
+    public static final int DEF_SIZE_IN_DP = 50;
     // 圆边框的默认宽度, 单位dp.
     public static final int DEF_CIRCLE_BORDER_WIDTH_IN_DP = 3;
     // 圆边框的默认颜色
     private static final int DEF_CIRCLE_BORDER_COLOR = Color.parseColor("#33B5E5");
+    // 圆内扇形的默认颜色
+    private static final int DEF_INNER_PIE_COLOR = Color.parseColor("#33B5E5");;
     // 扇形的最大进度, 进度达到最大进度时, 这个扇形就是一个圆.
     private static final int DEF_MAX_PROGRESS = 100;
     // 扇形的默认绘制进度.
-    private static final int DEF_PROGRESS = 30;
+    private static final int DEF_PROGRESS = 25;
     // 绘制扇形的默认起始角度.
     private static final float DEF_PIE_STARGING_ANGLE = -90;
 
@@ -45,10 +48,6 @@ public class CustomCircle3 extends View {
 
     // 默认宽高的变量
     private float mDefSize;
-    // 边框的默认宽度
-    private float mDefCircleBorderWidth;
-    // 圆的外边框半径的默认值 (这个圆因为有边框厚度, 所以有外边框和内边框)
-    private float mDefCircleOuterRadius;
     // 圆内画弧线时的矩形外框.
     private RectF mInnerArcRectF;
 
@@ -160,8 +159,14 @@ public class CustomCircle3 extends View {
      */
     private void initDefValues(Context context) {
         mDefSize = DensityUtils.dip2px(context, DEF_SIZE_IN_DP);
-        mDefCircleBorderWidth = DensityUtils.dip2px(getContext(), DEF_CIRCLE_BORDER_WIDTH_IN_DP);
-        mDefCircleOuterRadius = mDefSize / 2;
+
+        mCircleBorderColor = DEF_CIRCLE_BORDER_COLOR;
+        mCircleBorderWidth = DensityUtils.dip2px(getContext(), DEF_CIRCLE_BORDER_WIDTH_IN_DP);
+        mCircleOuterRadius = mDefSize / 2;
+        mInnerPieColor = DEF_INNER_PIE_COLOR;
+        mInnerPieMaxProgress = DEF_MAX_PROGRESS;
+        mInnerPieProgress = DEF_PROGRESS;
+        mInnerPieStartingAngle = DEF_PIE_STARGING_ANGLE;
     }
 
     /**
@@ -188,13 +193,13 @@ public class CustomCircle3 extends View {
                     //      getDimension()方法返回 float.
                     //      getDimensionPixelSize(), getDimensionPixelOffset()方法都返回 int. (一个四舍五入, 一个直接舍弃小数部分).
                     // 相同点: 都会将我们设置的dp为单位的数值自动转换为以px为单位的数值, 所以无需我们操心了, 具体看源码.
-                    mCircleBorderWidth = a.getDimension(index, mDefCircleBorderWidth);
+                    mCircleBorderWidth = a.getDimension(index, mCircleBorderWidth);
                     break;
                 case R.styleable.CustomCircle3_circleOuterRadius:
-                    mCircleOuterRadius = a.getDimension(index, mDefCircleOuterRadius);
+                    mCircleOuterRadius = a.getDimension(index, mCircleOuterRadius);
                     break;
                 case R.styleable.CustomCircle3_innerPieColor:
-                    mInnerPieColor = a.getColor(index, DEF_CIRCLE_BORDER_COLOR);
+                    mInnerPieColor = a.getColor(index, DEF_INNER_PIE_COLOR);
                     break;
                 case R.styleable.CustomCircle3_innerPieMaxProgress:
                     // getInt() 和 getInteger()方法的区别:
@@ -255,6 +260,7 @@ public class CustomCircle3 extends View {
         // 为了保证圆的外边框半径不能超过控件本身的1/2尺寸, 并且圆的边框厚度不能超过圆的外边框半径,
         // 需要重新计算相关数值.
         recalcValues();
+        // 圆心的两个坐标也是相对于该控件自身左上角的点的距离, 不是相对于其父控件左上角的点的距离.
         canvas.drawCircle(mHalfSize, mHalfSize, mCircleRadius, mBorderPaint);
         if (mInnerArcRectF == null) {
             float innerCircleOffset = mHalfSize - mCircleInnerRadius;
@@ -262,6 +268,7 @@ public class CustomCircle3 extends View {
                     getWidth() - innerCircleOffset, getHeight() - innerCircleOffset);
         }
         float sweepAngle = 1.0f * 360 * mInnerPieProgress / mInnerPieMaxProgress;
+        // 绘制弧线/扇形时的坐标, 或者外围矩形的坐标是相对于该控件自身左上角的点的距离, 不是相对于其父控件左上角的点的距离.
         canvas.drawArc(mInnerArcRectF, mInnerPieStartingAngle, sweepAngle, true, mContentPaint);
     }
 

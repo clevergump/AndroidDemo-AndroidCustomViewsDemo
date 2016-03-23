@@ -23,6 +23,7 @@
         android:layout_alignTop="@id/circle1"
         android:background="#3300ff00"/>
 
+    <!-- circle3, 设置的外边框半径70dp大于整个控件宽高的1/2尺寸50dp -->
     <com.example.custom_circle.widget.CustomCircle3
         android:id="@+id/circle3"
         android:layout_width="100dp"
@@ -31,14 +32,13 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         CustomCircle3:circleOuterRadius="70dp"
-        CustomCircle3:circleBorderWidth="10dp"
+        CustomCircle3:circleBorderWidth="3dp"
         CustomCircle3:circleBorderColor="#33B5E5"
-        CustomCircle3:innerPieColor="#55ff0000"
+        CustomCircle3:innerPieColor="#33B5E5"
         CustomCircle3:innerPieStartingAngle="-90"
         CustomCircle3:innerPieMaxProgress="100"
         CustomCircle3:innerPieProgress="25"
         android:background="#5500ff00"/>
-
 
     <com.example.custom_circle.widget.CustomCircle3
         android:id="@+id/circle4"
@@ -50,9 +50,17 @@
         CustomCircle3:circleOuterRadius="40dp"
         CustomCircle3:circleBorderWidth="10dp"
         CustomCircle3:circleBorderColor="#33B5E5"
-        CustomCircle3:innerPieColor="#55ff0000"
-        CustomCircle3:innerPieStartingAngle="20"
+        CustomCircle3:innerPieColor="#88ff0000"
+        CustomCircle3:innerPieStartingAngle="-90"
         CustomCircle3:innerPieMaxProgress="100"
         CustomCircle3:innerPieProgress="33"
         android:background="#5500ff00"/>
+
+    <com.example.custom_circle.widget.CustomCircle3
+        android:id="@+id/circle5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/circle4"
+        android:layout_marginLeft="20dp"
+        android:layout_alignTop="@id/circle4"/>
 </RelativeLayout>

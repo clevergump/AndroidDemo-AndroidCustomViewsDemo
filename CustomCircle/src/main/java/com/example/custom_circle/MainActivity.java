@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
                 int maxProgress = mCircle1.getMaxProgress();
                 while (progress < maxProgress) {
                     try {
-                        progress += 10;
-                        Thread.sleep(500);
+                        progress += 1;
+                        Thread.sleep(50);
                         mCircle1.setProgress(progress);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
