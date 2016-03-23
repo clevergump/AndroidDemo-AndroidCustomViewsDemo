@@ -15,16 +15,16 @@ import com.example.custom_circle.R;
 
 
 /**
- * 带有自定义属性的圆+圆内绘制角度(sweepAngle)可控制的扇形.
+ * 带有自定义属性的圆+圆内绘制角度(sweepAngle)可控并且会显示绘制进度的扇形.
  *
  * @author zhangzhiyi
  * @version 1.0
  * @createTime 2016/3/22 15:49
  * @projectName AndroidDemo-CustomViewsDemo
  */
-public class CustomCircle3 extends View {
+public class ProgressCircle extends View {
 
-    private static final String TAG = CustomCircle3.class.getSimpleName();
+    private static final String TAG = ProgressCircle.class.getSimpleName();
     // 默认宽高的数值, 单位dp.
     public static final int DEF_SIZE_IN_DP = 50;
     // 圆边框的默认宽度, 单位dp.
@@ -96,15 +96,15 @@ public class CustomCircle3 extends View {
     private StringBuilder mProgressPercentageTextSb = new StringBuilder();
 
 
-    public CustomCircle3(Context context) {
+    public ProgressCircle(Context context) {
         this(context, null);
     }
 
-    public CustomCircle3(Context context, AttributeSet attrs) {
+    public ProgressCircle(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CustomCircle3(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ProgressCircle(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr);
     }
@@ -252,21 +252,21 @@ public class CustomCircle3 extends View {
     }
 
     /**
-     * 初始化绘制进度百分比文字描述的画笔
-     */
-    private void initProgressTextPaint() {
-        mProgressTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mProgressTextPaint.setColor(Color.BLACK);
-        mProgressTextPaint.setTextSize(DensityUtils.sp2px(getContext(), 15));
-    }
-
-    /**
      * 初始化绘制圆内扇形的画笔
      */
     private void initContentPaint() {
         mContentPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mContentPaint.setColor(mInnerPieColor);
         mContentPaint.setStyle(Paint.Style.FILL);
+    }
+
+    /**
+     * 初始化绘制进度百分比文字描述的画笔
+     */
+    private void initProgressTextPaint() {
+        mProgressTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mProgressTextPaint.setColor(Color.BLACK);
+        mProgressTextPaint.setTextSize(DensityUtils.sp2px(getContext(), 15));
     }
 
     @Override
@@ -316,6 +316,7 @@ public class CustomCircle3 extends View {
             int convertedProgress = (int)(1.0f * mInnerPieProgress / mInnerPieMaxProgress * 100) ;
             progressPercentText = convertedProgress + "%";
         }
+        // 当文字刚好处于垂直居中时的基准线X坐标值
         // Paint.measureText(String): 获取给定文字的宽度
         float baselineX = canvas.getWidth() / 2 - mProgressTextPaint.measureText(progressPercentText) / 2;
         // 当文字刚好处于垂直居中时的基准线Y坐标值(这个坐标对应的水平线一般都是位于水平居中线的下方, 可以自己推算).

@@ -3,11 +3,11 @@ package com.example.custom_circle;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.custom_circle.widget.CustomCircle3;
+import com.example.custom_circle.widget.ProgressCircle;
 
 public class MainActivity extends AppCompatActivity {
 
-    private CustomCircle3 mCircle1;
+    private ProgressCircle mCircle1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mCircle1 = (CustomCircle3) findViewById(R.id.circle5);
+        mCircle1 = (ProgressCircle) findViewById(R.id.circle3);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 while (progress < maxProgress) {
                     try {
                         progress += 1;
-                        Thread.sleep(100);
+                        Thread.sleep(50);
                         mCircle1.setProgress(progress);
                     } catch (InterruptedException e) {
                         e.printStackTrace();

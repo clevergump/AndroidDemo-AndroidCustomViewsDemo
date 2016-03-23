@@ -55,7 +55,11 @@
     我们可以用下图来帮助理解:   
     ![使用Stroke的画笔绘制圆][CustomCircle 自定义圆-使用Stroke的画笔绘制圆]   
     如上图所示, 如果我们要使用 `Stroke` 样式的 `Paint` 来绘制上图中边框A和B组成的圆环, 那么我们在调用 `Canvas.drawCircle(float cx, float cy, float radius, Paint paint)` 方法时, 需要传入的半径 `radius` 的数值其实就等于AB两个圆之间的那个红色虚线圆C的半径.
+
    
+####2. **运行效果图:**   
+![运行效果图][CustomCircle 自定义圆-运行效果图]
+
 ---
 
 
@@ -66,7 +70,7 @@
 [CustomRectangle 自定义矩形-canvas.drawRect()的参数说明]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/image/canvas.drawRect()%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E.png
 [CustomRectangle 自定义矩形-运行效果图]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomRectangle/image/%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E5%9B%BE.png
 [CustomCircle 自定义圆-使用Stroke的画笔绘制圆]: https://github.com/clevergump/AndroidDemo-CustomViewsDemo/blob/master/CustomCircle/image/%E4%BD%BF%E7%94%A8Stroke%E7%9A%84%E7%94%BB%E7%AC%94%E7%BB%98%E5%88%B6%E5%9C%86.png
-
+[CustomCircle 自定义圆-运行效果图]: CustomCircle/image/运行效果图.gif
 
 
 
