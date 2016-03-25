@@ -3,6 +3,8 @@
 
 - <a href="#customrectangle">CustomRectangle 自定义矩形</a>
 - <a href="#customcircle">CustomCircle 自定义圆</a>
+- <a href="#ProgressCircle">ProgressCircle 带进度指示功能的自定义圆</a>
+
 
 
 
@@ -63,7 +65,10 @@
 ####2. **运行效果图:**   
 ![运行效果图][CustomCircle 自定义圆-运行效果图]
 
-### ProgressCircle
+---
+
+## <span id="ProgressCircle">ProgressCircle</span>   
+
 A custom view for showing progress-percentage. Refer [here](https://github.com/clevergump/Android-ProgressCircle) for more details.   
 
 ![ProgressCircle-running_image](https://github.com/clevergump/Android-ProgressCircle/blob/master/sample/image/progresscircle_in_image_loading.gif)
