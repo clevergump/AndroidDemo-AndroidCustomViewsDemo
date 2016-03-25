@@ -8,9 +8,11 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Looper;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.clevergump.my_common_library.utils.DensityUtils;
+import com.example.custom_circle.MyApplication;
 import com.example.custom_circle.R;
 
 
@@ -92,8 +94,6 @@ public class ProgressCircle extends View {
     private float mInnerPieStartingAngle;
     // 实际宽高的一半, 通常用来和用户设置的圆的外边框的半径进行比较, 然后选择二者中的较小者作为圆的外边框半径的实际值.
     private int mHalfSize;
-    // 用于描述进度百分比文字的 StringBuilder对象
-    private StringBuilder mProgressPercentageTextSb = new StringBuilder();
 
 
     public ProgressCircle(Context context) {
@@ -110,12 +110,39 @@ public class ProgressCircle extends View {
     }
 
     /**
+     * 设置当前进度
+     * @param progress 当前进度
+     * @param maxProgress 最大进度
+     */
+    public void setProgress(int progress, int maxProgress) {
+        if (progress > maxProgress) {
+            Log.w(MyApplication.TAG, "Progress can't exceed max progress");
+            return;
+        }
+        if (progress < 0) {
+            Log.w(MyApplication.TAG, "Progress can't be less than zero");
+            return;
+        }
+        if (maxProgress < 0) {
+            Log.w(MyApplication.TAG, "Max progress can't be less than zero");
+            return;
+        }
+        mInnerPieMaxProgress = maxProgress;
+        setProgress(progress);
+    }
+
+    /**
      * 设置当前进度.
-     * @param progress
+     * @param progress 当前进度
      */
     public void setProgress(int progress) {
+        if (progress < 0) {
+            Log.w(MyApplication.TAG, "Max progress can't be less than zero");
+            return;
+        }
         if (progress > mInnerPieMaxProgress) {
-            progress = mInnerPieMaxProgress;
+            Log.w(MyApplication.TAG, "Max progress can't be less than zero");
+            return;
         }
         mInnerPieProgress = progress;
         if (isMainThread()) {

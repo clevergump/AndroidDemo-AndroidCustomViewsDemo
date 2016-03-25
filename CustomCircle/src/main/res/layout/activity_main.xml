@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.custom_circle.MainActivity">
+    tools:context=".activity.MainActivity">
+
 
     <!-- circle3, 故意设置外边框半径 70dp大于整个控件宽高的1/2尺寸 50dp,
         并配上背景色, 以验证该自定义圆对这种情况的处理 -->
@@ -12,16 +13,16 @@
         android:id="@+id/circle1"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
+        android:visibility="visible"
+        CustomCircle3:circleBorderColor="#119185"
+        CustomCircle3:circleBorderWidth="8dp"
         CustomCircle3:circleOuterRadius="70dp"
-        CustomCircle3:circleBorderWidth="3dp"
-        CustomCircle3:circleBorderColor="#33B5E5"
-        CustomCircle3:innerPieColor="#33B5E5"
-        CustomCircle3:innerPieStartingAngle="-90"
+        CustomCircle3:innerPieColor="#14C89F"
         CustomCircle3:innerPieMaxProgress="100"
         CustomCircle3:innerPieProgress="65"
-        android:background="#5500ff00"/>
+        CustomCircle3:innerPieStartingAngle="-90" />
 
     <!-- circle4, 故意设置外边框半径 40dp小于整个控件宽高的1/2尺寸 50dp,
         并配上背景色, 以验证该自定义圆对这种情况的处理 -->
@@ -29,25 +30,49 @@
         android:id="@+id/circle2"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_toRightOf="@id/circle1"
-        android:layout_marginLeft="20dp"
         android:layout_alignTop="@id/circle1"
-        CustomCircle3:circleOuterRadius="40dp"
-        CustomCircle3:circleBorderWidth="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/circle1"
+        android:visibility="visible"
         CustomCircle3:circleBorderColor="#33B5E5"
+        CustomCircle3:circleBorderWidth="5dp"
+        CustomCircle3:circleOuterRadius="40dp"
         CustomCircle3:innerPieColor="#88ff0000"
-        CustomCircle3:innerPieStartingAngle="-90"
         CustomCircle3:innerPieMaxProgress="100"
         CustomCircle3:innerPieProgress="30"
-        android:background="#5500ff00"/>
+        CustomCircle3:innerPieStartingAngle="-90" />
 
     <com.example.custom_circle.widget.ProgressCircle
         android:id="@+id/circle3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/circle2"
+        android:layout_alignBottom="@+id/circle2"
+        android:layout_marginBottom="23dp"
         android:layout_marginLeft="20dp"
-        android:layout_alignTop="@id/circle2"
-        android:layout_marginTop="25dp"/>
+        android:layout_toRightOf="@+id/circle2" />
 
+
+    <RelativeLayout
+        android:id="@+id/rl_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/circle1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp">
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/bg_image_loading"
+            android:scaleType="centerCrop" />
+
+        <com.example.custom_circle.widget.ProgressCircle
+            android:id="@+id/circle4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
 </RelativeLayout>

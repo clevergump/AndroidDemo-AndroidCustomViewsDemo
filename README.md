@@ -45,6 +45,11 @@
 ####3. **运行效果图:**   
 ![运行效果图][CustomRectangle 自定义矩形-运行效果图]
 
+### ProgressCircle
+A custom view for showing progress-percentage. Refer [here](https://github.com/clevergump/Android-ProgressCircle) for more details.   
+![ProgressCircle-running_image](CustomCircle/image/running_image.gif)
+
+
 ---
 
 ## <span id="CustomCircle">CustomCircle</span>
