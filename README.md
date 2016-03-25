@@ -3,7 +3,7 @@
 
 - <a href="#customrectangle">CustomRectangle 自定义矩形</a>
 - <a href="#customcircle">CustomCircle 自定义圆</a>
-- <a href="#ProgressCircle">ProgressCircle 带进度指示功能的自定义圆</a>
+- <a href="#progresscircle">ProgressCircle 带进度指示功能的自定义圆</a>
 
 
 
@@ -12,7 +12,7 @@
 
 ---
 
-## <span id="CustomRectangle">CustomRectangle</span>
+## <span id="customrectangle">CustomRectangle</span>
 
 ####1. **练习的目标:**   
 - 一个继承自View类的控件, 需要让 `onMeasure()` 方法处理layout文件中为长宽设置为 `wrap_content` 时的情况 (详情见 
@@ -52,7 +52,7 @@
 
 ---
 
-## <span id="CustomCircle">CustomCircle</span>
+## <span id="customcircle">CustomCircle</span>
 
 ####1. **注意事项:**   
 - 注意圆的半径的正确计算.   
@@ -67,7 +67,7 @@
 
 ---
 
-## <span id="ProgressCircle">ProgressCircle</span>   
+## <span id="progresscircle">ProgressCircle</span>   
 
 A custom view for showing progress-percentage. Refer [here](https://github.com/clevergump/Android-ProgressCircle) for more details.   
 
