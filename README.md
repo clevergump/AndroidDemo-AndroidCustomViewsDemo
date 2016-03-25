@@ -66,7 +66,7 @@
 ### ProgressCircle
 A custom view for showing progress-percentage. Refer [here](https://github.com/clevergump/Android-ProgressCircle) for more details.   
 
-![ProgressCircle-running_image](CustomCircle/image/running_image.gif)
+![ProgressCircle-running_image](https://github.com/clevergump/Android-ProgressCircle/blob/master/sample/image/progresscircle_in_image_loading.gif)
 
 ---
 
