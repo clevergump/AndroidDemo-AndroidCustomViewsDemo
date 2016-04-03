@@ -23,10 +23,10 @@ public class DragWithFingerButton extends Button {
     private static final int COORDINATE_INIT_VALUE = -1;
 
     // 左, 上, 右, 下四条边各自 margin的默认最小值.
-    private static final int DEF_MIN_LEFT_MARGIN = 0;
-    private static final int DEF_MIN_TOP_MARGIN = 0;
-    private static final int DEF_MIN_RIGHT_MARGIN = 0;
-    private static final int DEF_MIN_BOTTOM_MARGIN = 0;
+    private static final int DEF_MIN_LEFT_MARGIN_IN_PX = 100;
+    private static final int DEF_MIN_TOP_MARGIN_IN_PX = 100;
+    private static final int DEF_MIN_RIGHT_MARGIN_IN_PX = 100;
+    private static final int DEF_MIN_BOTTOM_MARGIN_IN_PX = 100;
 
     // 发生滑动时, 上一次记录的手指的 x,y 坐标
     private float mLastX;
@@ -41,16 +41,20 @@ public class DragWithFingerButton extends Button {
     private int mScaledTouchSlop = TOUCH_SLOP_INIT_VALUE;
 
     // 左, 上, 右, 下四条边各自 margin的实际最小值.
-    private int mMinLeftMargin = DEF_MIN_LEFT_MARGIN;
-    private int mMinTopMargin = DEF_MIN_TOP_MARGIN;
-    private int mMinRightMargin = DEF_MIN_RIGHT_MARGIN;
-    private int mMinBottomMargin = DEF_MIN_BOTTOM_MARGIN;
+    private int mMinLeftMarginInPx = DEF_MIN_LEFT_MARGIN_IN_PX;
+    private int mMinTopMarginInPx = DEF_MIN_TOP_MARGIN_IN_PX;
+    private int mMinRightMarginInPx = DEF_MIN_RIGHT_MARGIN_IN_PX;
+    private int mMinBottomMarginInPx = DEF_MIN_BOTTOM_MARGIN_IN_PX;
 
     // 该控件的父容器的左, 上, 右, 下四条边的坐标.
     private int mParentViewLeft = COORDINATE_INIT_VALUE;
     private int mParentViewTop = COORDINATE_INIT_VALUE;
     private int mParentViewRight = COORDINATE_INIT_VALUE;
     private int mParentViewBottom = COORDINATE_INIT_VALUE;
+    private int mMinLeft = COORDINATE_INIT_VALUE;
+    private int mMaxRight = COORDINATE_INIT_VALUE;
+    private int mMinTop = COORDINATE_INIT_VALUE;
+    private int mMaxBottom = COORDINATE_INIT_VALUE;
 
     public DragWithFingerButton(Context context) {
         super(context);
@@ -100,63 +104,6 @@ public class DragWithFingerButton extends Button {
     }
 
     /**
-     * 重新设定 MarginLayoutParams 的数值, 但必须保证该控件不能超出其父容器的四条边框包围的范围, 然后
-     * 重新布局该控件 (即: 让该控件的父容器对他进行重新layout).
-     */
-    private void invalidateMarginLayoutParams() {
-        // 获取父容器的四条边的坐标.
-        getParentViewBorderCoordinates();
-
-        // 向左移动, 超出了屏幕左侧
-        if (mScrolledDeltaX < 0 && getLeft() + mScrolledDeltaX < mParentViewLeft) {
-            mMarginLayoutParams.leftMargin = 0;
-        }
-        // 向右移动, 超出了屏幕右侧
-        else if(mScrolledDeltaX > 0 && getRight() + mScrolledDeltaX > mParentViewRight) {
-            mMarginLayoutParams.rightMargin = 0;
-        }
-        // 在水平方向移动后, 左右两个边都仍在屏幕内
-        else if (getLeft() + mScrolledDeltaX > mParentViewLeft && getRight() + mScrolledDeltaX < mParentViewRight) {
-            mMarginLayoutParams.leftMargin += (int) mScrolledDeltaX;
-        }
-
-        // 向上移动, 超出了屏幕顶部
-        if (mScrolledDeltaY < 0 && getTop() + mScrolledDeltaY < mParentViewTop) {
-            mMarginLayoutParams.topMargin = 0;
-        }
-        // 向下移动, 超出了屏幕底部
-        else if(mScrolledDeltaY > 0 && getBottom() + mScrolledDeltaY > mParentViewBottom) {
-            mMarginLayoutParams.bottomMargin = 0;
-        }
-        // 在竖直方向移动后, 上下两个边都仍在屏幕内
-        else if (getTop() + mScrolledDeltaY > mParentViewTop && getBottom() + mScrolledDeltaY < mParentViewBottom) {
-            mMarginLayoutParams.topMargin += (int) mScrolledDeltaY;
-        }
-
-        setLayoutParams(mMarginLayoutParams);
-    }
-
-    /**
-     * 获取父容器的四条边的坐标.
-     */
-    private void getParentViewBorderCoordinates() {
-        ViewGroup parentView = (ViewGroup) getParent();
-
-        if (mParentViewLeft == COORDINATE_INIT_VALUE) {
-            mParentViewLeft = parentView.getLeft();
-        }
-        if (mParentViewTop == COORDINATE_INIT_VALUE) {
-            mParentViewTop = parentView.getTop();
-        }
-        if (mParentViewRight == COORDINATE_INIT_VALUE) {
-            mParentViewRight = parentView.getRight();
-        }
-        if (mParentViewBottom == COORDINATE_INIT_VALUE) {
-            mParentViewBottom = parentView.getBottom();
-        }
-    }
-
-    /**
      * 判断手指是否发生了滑动事件.
      * @return 返回true表示手指发生了滑动事件. 返回false表示未发生滑动事件或者手指滑动距离太小,
      *         小于系统能够识别的最小滑动距离.
@@ -164,6 +111,158 @@ public class DragWithFingerButton extends Button {
     private boolean isScroll() {
         initTouchSlop();
         return Math.pow(mScrolledDeltaX, 2) + Math.pow(mScrolledDeltaY, 2) > Math.pow(mScaledTouchSlop, 2);
+    }
+
+    /**
+     * 重新设定 MarginLayoutParams 的数值, 但必须保证该控件不能超出其父容器的四条边框包围的范围, 然后
+     * 重新布局该控件 (即: 让该控件的父容器对他进行重新layout).
+     */
+    private void invalidateMarginLayoutParams() {
+        // 计算该控件能够在其中滑动的最大区域的四条边的坐标值.
+        calcBorderCoordinatesOfMaxAreaAvailable();
+
+        // 如果向左移动, 并且超出了该控件能够在其中移动的最大区域的左边框
+        if (moveLeftward() && moveOutOfLeftBorderLimit()) {
+            mMarginLayoutParams.leftMargin = mMinLeftMarginInPx;
+        }
+        // 如果向右移动, 并且超出了该控件能够在其中移动的最大区域的右边框
+        else if(moveRightward() && moveOutOfRightBorderLimit()) {
+            mMarginLayoutParams.rightMargin = mMinRightMarginInPx;
+        }
+        // 如果在水平方向移动后, 左右两个边都仍在该控件能够在其中移动的最大区域的左右边框范围内
+        else if (moveWithinLeftAndRightBorderLimits()) {
+            mMarginLayoutParams.leftMargin += (int) mScrolledDeltaX;
+        }
+
+        // 如果向上移动, 并且超出了该控件能够在其中移动的最大区域的上边框
+        if (moveUpward() && moveOutOfTopBorderLimit()) {
+            mMarginLayoutParams.topMargin = mMinTopMarginInPx;
+        }
+        // 如果向下移动, 并且超出了该控件能够在其中移动的最大区域的下边框
+        else if(moveDownward() && moveOutOfBottomBorderLimit()) {
+            mMarginLayoutParams.bottomMargin = mMinBottomMarginInPx;
+        }
+        // 如果在竖直方向移动后, 上下两个边都仍在该控件能够在其中移动的最大区域的上下边框范围内
+        else if (moveWithinTopAndBottomBorderLimits()) {
+            mMarginLayoutParams.topMargin += (int) mScrolledDeltaY;
+        }
+
+        setLayoutParams(mMarginLayoutParams);
+    }
+
+    /**
+     * 计算该控件能够在其中滑动的最大区域的四条边的坐标值.
+     */
+    private void calcBorderCoordinatesOfMaxAreaAvailable() {
+        ViewGroup parentView = (ViewGroup) getParent();
+
+        if (mMinLeft == COORDINATE_INIT_VALUE) {
+            if (mParentViewLeft == COORDINATE_INIT_VALUE) {
+                mParentViewLeft = parentView.getLeft();
+            }
+            mMinLeft = mParentViewLeft + mMinLeftMarginInPx;
+        }
+
+        if (mMinTop == COORDINATE_INIT_VALUE) {
+            if (mParentViewTop == COORDINATE_INIT_VALUE) {
+                mParentViewTop = parentView.getTop();
+            }
+            mMinTop = mParentViewTop + mMinTopMarginInPx;
+        }
+
+        if (mMaxRight == COORDINATE_INIT_VALUE) {
+            if (mParentViewRight == COORDINATE_INIT_VALUE) {
+                mParentViewRight = parentView.getRight();
+            }
+            mMaxRight = mParentViewRight - mMinRightMarginInPx;
+        }
+
+        if (mMaxBottom == COORDINATE_INIT_VALUE) {
+            if (mParentViewBottom == COORDINATE_INIT_VALUE) {
+                mParentViewBottom = parentView.getBottom();
+            }
+            mMaxBottom = mParentViewBottom - mMinBottomMarginInPx;
+        }
+    }
+
+    /**
+     * 判断该控件向上移动后, 是否已超出了他能够在其中移动的最大区域的上边框.
+     * @return
+     */
+    private boolean moveOutOfTopBorderLimit() {
+        return getTop() + mScrolledDeltaY < mMinTop;
+    }
+
+    /**
+     * 判断该控件向下移动后, 是否已超出了他能够在其中移动的最大区域的下边框.
+     * @return
+     */
+    private boolean moveOutOfBottomBorderLimit() {
+        return getBottom() + mScrolledDeltaY > mMaxBottom;
+    }
+
+    /**
+     * 判断该控件在垂直方向移动后, 是否仍然在他能够在其中移动的最大区域的上下两边框范围内.
+     * @return
+     */
+    private boolean moveWithinTopAndBottomBorderLimits() {
+        return getTop() + mScrolledDeltaY > mMinTop && getBottom() + mScrolledDeltaY < mMaxBottom;
+    }
+
+    /**
+     * 判断该控件向左移动后, 是否已超出了他能够在其中移动的最大区域的左边框.
+     * @return
+     */
+    private boolean moveOutOfLeftBorderLimit() {
+        return getLeft() + mScrolledDeltaX < mMinLeft;
+    }
+
+    /**
+     * 判断该控件向右移动后, 是否已超出了他能够在其中移动的最大区域的右边框.
+     * @return
+     */
+    private boolean moveOutOfRightBorderLimit() {
+        return getRight() + mScrolledDeltaX > mMaxRight;
+    }
+
+    /**
+     * 判断该控件在水平方向移动后, 是否仍然在该控件能够在其中移动的最大区域的左右两边框范围内.
+     * @return
+     */
+    private boolean moveWithinLeftAndRightBorderLimits() {
+        return getLeft() + mScrolledDeltaX > mMinLeft && getRight() + mScrolledDeltaX < mMaxRight;
+    }
+
+    /**
+     * 是否向左移动
+     * @return
+     */
+    private boolean moveLeftward() {
+        return mScrolledDeltaX < 0;
+    }
+
+    /**
+     * 是否向上移动
+     * @return
+     */
+    private boolean moveUpward() {
+        return mScrolledDeltaY < 0;
+    }
+
+    /**
+     * 是否向右移动
+     * @return
+     */
+    private boolean moveRightward() {
+        return mScrolledDeltaX > 0;
+    }
+
+    /**
+     * 是否向下移动
+     * @return
+     */
+    private boolean moveDownward() {
+        return mScrolledDeltaY > 0;
     }
 
     private void initTouchSlop() {

@@ -11,6 +11,8 @@
         android:layout_height="50dp"
         android:text="改变margin进行移动的Button"
         android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="60dp"
         android:background="#33ff0000"/>
 
     <com.example.drag_with_finger_view.widget.IncorrectDragWithFingerButton
@@ -22,9 +24,4 @@
         android:gravity="center"
         android:background="#330000ff"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="button"
-        android:layout_centerInParent="true"/>
 </RelativeLayout>
