@@ -1,21 +1,25 @@
-package com.example.drag_with_finger_view.widget;
+package com.example.drag_and_move_view.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.drag_and_move_view.R;
+
 /**
- * 可随手指的拖拽一起移动的 Button
+ * 可随手指的拖拽一起移动的 Button. 注意: 如果在布局文件中为该控件设置了某些特殊的布局参数, 可能会影响到该控件的
+ * 自由滑动. 例如: 在 RelativeLayout中设置该控件 centerInParent="true", 那么该控件将会被一直锁定在屏幕的中央位置
+ * 而不能自由滑动.
  *
  * @author zhangzhiyi
  * @version 1.0
  * @createTime 2016/4/2 22:43
- * @projectName DragWithHandView
  */
-public class DragWithFingerButton extends Button {
+public class DragAndMoveButton extends Button {
 
     // TouchSlop的初始值
     private static final int TOUCH_SLOP_INIT_VALUE = -1;
@@ -23,10 +27,10 @@ public class DragWithFingerButton extends Button {
     private static final int COORDINATE_INIT_VALUE = -1;
 
     // 左, 上, 右, 下四条边各自 margin的默认最小值.
-    private static final int DEF_MIN_LEFT_MARGIN_IN_PX = 100;
-    private static final int DEF_MIN_TOP_MARGIN_IN_PX = 100;
-    private static final int DEF_MIN_RIGHT_MARGIN_IN_PX = 100;
-    private static final int DEF_MIN_BOTTOM_MARGIN_IN_PX = 100;
+    private static final int DEF_MIN_LEFT_MARGIN_IN_PX = 0;
+    private static final int DEF_MIN_TOP_MARGIN_IN_PX = 0;
+    private static final int DEF_MIN_RIGHT_MARGIN_IN_PX = 0;
+    private static final int DEF_MIN_BOTTOM_MARGIN_IN_PX = 0;
 
     // 发生滑动时, 上一次记录的手指的 x,y 坐标
     private float mLastX;
@@ -56,23 +60,30 @@ public class DragWithFingerButton extends Button {
     private int mMinTop = COORDINATE_INIT_VALUE;
     private int mMaxBottom = COORDINATE_INIT_VALUE;
 
-    public DragWithFingerButton(Context context) {
-        super(context);
-        init();
+    public DragAndMoveButton(Context context) {
+        this(context, null);
     }
 
-    public DragWithFingerButton(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
+    public DragAndMoveButton(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
     }
 
-    public DragWithFingerButton(Context context, AttributeSet attrs, int defStyleAttr) {
+    public DragAndMoveButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(context, attrs, defStyleAttr);
     }
 
-    private void init() {
+    private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         initTouchSlop();
+        if (attrs == null) {
+            return;
+        }
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.DragAndMoveButton, defStyleAttr, 0);
+        mMinLeftMarginInPx = ta.getDimensionPixelSize(R.styleable.DragAndMoveButton_minLeftMargin, DEF_MIN_LEFT_MARGIN_IN_PX);
+        mMinTopMarginInPx = ta.getDimensionPixelSize(R.styleable.DragAndMoveButton_minTopMargin, DEF_MIN_TOP_MARGIN_IN_PX);
+        mMinRightMarginInPx = ta.getDimensionPixelSize(R.styleable.DragAndMoveButton_minRightMargin, DEF_MIN_RIGHT_MARGIN_IN_PX);
+        mMinBottomMarginInPx = ta.getDimensionPixelSize(R.styleable.DragAndMoveButton_minBottomMargin, DEF_MIN_BOTTOM_MARGIN_IN_PX);
+        ta.recycle();
     }
 
     @Override
@@ -265,6 +276,9 @@ public class DragWithFingerButton extends Button {
         return mScrolledDeltaY > 0;
     }
 
+    /**
+     * 初始化 TouchSlop的数值, 即: 获取系统能够识别的最小滑动距离.
+     */
     private void initTouchSlop() {
         if (mScaledTouchSlop == TOUCH_SLOP_INIT_VALUE) {
             mScaledTouchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();

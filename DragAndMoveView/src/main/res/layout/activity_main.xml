@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:DragAndMoveButton="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.example.drag_with_finger_view.widget.DragWithFingerButton
+    <com.example.drag_and_move_view.widget.DragAndMoveButton
         android:id="@+id/drag_btn"
         android:layout_width="200dp"
         android:layout_height="50dp"
@@ -13,9 +14,13 @@
         android:gravity="center"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="60dp"
+        DragAndMoveButton:minLeftMargin="50dp"
+        DragAndMoveButton:minTopMargin="100dp"
+        DragAndMoveButton:minRightMargin="20dp"
+        DragAndMoveButton:minBottomMargin="40dp"
         android:background="#33ff0000"/>
 
-    <com.example.drag_with_finger_view.widget.IncorrectDragWithFingerButton
+    <com.example.drag_and_move_view.widget.IncorrectDragAndMoveButton
         android:id="@+id/incorrect_drag_btn"
         android:layout_width="200dp"
         android:layout_height="50dp"

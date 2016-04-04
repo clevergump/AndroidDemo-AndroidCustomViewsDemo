@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.example.drag_with_finger_view"
+        applicationId "com.example.drag_and_move_view"
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 1

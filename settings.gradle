@@ -1,1 +1,1 @@
-include ':CustomRectangle', ':MyCommonLibrary', ':CustomCircle', ':DragWithFingerView'
+include ':CustomRectangle', ':MyCommonLibrary', ':CustomCircle', ':DragAndMoveView'

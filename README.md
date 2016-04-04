@@ -4,7 +4,7 @@
 - <a href="#customrectangle">CustomRectangle 自定义矩形</a>
 - <a href="#customcircle">CustomCircle 自定义圆</a>
 - <a href="#progresscircle">ProgressCircle 带进度指示功能的自定义圆</a>
-- <a href="#dragwithfingerview">DragWithFingerView 跟随手指一起移动的控件</a>
+- <a href="#dragandmoveview">DragAndMoveView 跟随手指一起移动的控件</a>
 
 
 
@@ -76,7 +76,7 @@ A custom view for showing progress-percentage. Refer [here](https://github.com/c
 
 ---
 
-## <span id="dragwithfingerview">DragWithFingerView</span>
+## <span id="dragandmoveview">DragAndMoveView</span>
 
 这是一个按照手指的滑动轨迹进行移动的自定义控件的 Demo. 实现思路是改变控件的 `MarginLayoutParams` 
 的 `leftMargin` 和 `topMargin`. 这种实现方式移动的是控件自身, 所以不论移动到什么位置, 该控件都依然可以响应交互事件. 当然, 也有其他实现方式可以完成类似功能. 其中, 要注意两种情况:
@@ -85,7 +85,7 @@ A custom view for showing progress-percentage. Refer [here](https://github.com/c
 
 **运行效果图如下:**   
 
-![DragWithFingerView/image/running_effect_image.gif](DragWithFingerView/image/running_effect_image.gif)
+![DragAndMoveView/image/running_effect_image.gif](DragAndMoveView/image/running_effect_image.gif)
 
 ---
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DragAndMoveButton">
+        <attr name="minLeftMargin" format="dimension"/>
+        <attr name="minTopMargin" format="dimension"/>
+        <attr name="minRightMargin" format="dimension"/>
+        <attr name="minBottomMargin" format="dimension"/>
+    </declare-styleable>
+</resources>

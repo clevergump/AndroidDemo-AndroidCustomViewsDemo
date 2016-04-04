@@ -1,34 +1,41 @@
-package com.example.drag_with_finger_view.widget;
+package com.example.drag_and_move_view.widget.draft;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.ViewGroup;
 import android.widget.Button;
 
 /**
- * 这是一个反面例子. 为了说明调用一个控件的 scrollTo(), scrollBy()方法, 只能让控件的内容移动, 而不能让移动控件.
- * 如果想让某个控件移动, 可以在该控件的外面嵌套一层 ViewGroup, 然后调用该 ViewGroup的 scrollTo(), scrollBy()方法.
+ * 可随手指的拖拽一起移动的 Button (草稿1, 仅供演示该控件功能的一步步完善, bug的一步步修复, 扩展性的一步步增强的过程)
  *
  * @author zhangzhiyi
  * @version 1.0
- * @createTime 2016/4/3 11:15
- * @projectName DragWithHandView
+ * @createTime 2016/4/2 22:43
  */
-public class IncorrectDragWithFingerButton extends Button {
+public class DragAndMoveButton1 extends Button {
 
     private float mLastY;
     private float mLastX;
+    private ViewGroup.MarginLayoutParams mMarginLayoutParams;
 
-    public IncorrectDragWithFingerButton(Context context) {
+    public DragAndMoveButton1(Context context) {
         super(context);
+        init();
     }
 
-    public IncorrectDragWithFingerButton(Context context, AttributeSet attrs) {
+    public DragAndMoveButton1(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init();
     }
 
-    public IncorrectDragWithFingerButton(Context context, AttributeSet attrs, int defStyleAttr) {
+    public DragAndMoveButton1(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    private void init() {
+
     }
 
     @Override
@@ -37,6 +44,7 @@ public class IncorrectDragWithFingerButton extends Button {
             case MotionEvent.ACTION_DOWN:
                 mLastX = event.getRawX();
                 mLastY = event.getRawY();
+                mMarginLayoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
                 break;
             case MotionEvent.ACTION_MOVE:
             case MotionEvent.ACTION_UP:
@@ -44,7 +52,9 @@ public class IncorrectDragWithFingerButton extends Button {
                 float currY = event.getRawY();
                 float dx = currX - mLastX;
                 float dy = currY - mLastY;
-                scrollBy((int)-dx, (int)-dy);
+                mMarginLayoutParams.leftMargin += (int)dx;
+                mMarginLayoutParams.topMargin += (int)dy;
+                setLayoutParams(mMarginLayoutParams);
                 mLastX = currX;
                 mLastY = currY;
                 break;
