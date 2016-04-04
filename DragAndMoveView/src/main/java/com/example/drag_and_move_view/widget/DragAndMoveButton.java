@@ -12,7 +12,7 @@ import com.example.drag_and_move_view.R;
 
 /**
  * 可随手指的拖拽一起移动的 Button. 注意: 如果在布局文件中为该控件设置了某些特殊的布局参数, 可能会影响到该控件的
- * 自由滑动. 例如: 在 RelativeLayout中设置该控件 centerInParent="true", 那么该控件将会被一直锁定在屏幕的中央位置
+ * 自由滑动. 例如: 在 RelativeLayout中设置该控件 android:layout_centerInParent="true", 那么该控件将会被一直锁定在屏幕的中央位置
  * 而不能自由滑动.
  *
  * @author zhangzhiyi
