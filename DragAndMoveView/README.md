@@ -60,8 +60,8 @@
         @Override
         public void onGlobalLayout() {
             view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-            int width = view.getWidth();
-            int height = view.getHeight();
+            int width = view.getMeasuredWidth();
+            int height = view.getMeasuredHeight();
             int left = view.getLeft();
             int top = view.getTop();
             int right = view.getRight();

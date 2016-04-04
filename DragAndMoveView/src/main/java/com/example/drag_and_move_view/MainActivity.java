@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         // 下面的写法都是错误的, 因为此时该View可能还没有加载完毕, 所以获取的宽高以及四条边的坐标值都为0.
 
-//        int width = mIncorrectDragBtn.getWidth();
-//        int height = mIncorrectDragBtn.getHeight();
+//        int width = mIncorrectDragBtn.getMeasuredWidth();
+//        int height = mIncorrectDragBtn.getMeasuredHeight();
 //        int left = mIncorrectDragBtn.getLeft();
 //        int top = mIncorrectDragBtn.getTop();
 //        int right = mIncorrectDragBtn.getRight();
