@@ -59,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
                 .bitmapConfig(Bitmap.Config.ARGB_8888)
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
-                .showImageOnLoading(R.mipmap.bg_image_loading)
-                .showImageForEmptyUri(R.mipmap.ic_empty)
-                .showImageOnFail(R.mipmap.ic_error);
+                .showImageOnLoading(R.drawable.bg_image_loading)
+                .showImageForEmptyUri(R.drawable.ic_empty)
+                .showImageOnFail(R.drawable.ic_error);
         DisplayImageOptions options = optionsBuilder.build();
 
         // TODO: 匿名内部类, 可能会造成该Activity泄露, 待重构
