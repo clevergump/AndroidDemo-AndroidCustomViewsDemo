@@ -62,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
         mIncorrectDragBtn.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                mIncorrectDragBtn.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                // removeGlobalOnLayoutListener(): since API-1, deprecated in API-16.
+                // removeOnGlobalLayoutListener(): since API-16. 所以minSdk低于16的不能使用该方法, 若使用, 那么在命令行执行 gradlew build命令时, lint会报错.
+                mIncorrectDragBtn.getViewTreeObserver().removeGlobalOnLayoutListener (this);
 
                 int screenHeightPixels = DensityUtils.getScreenHeightPixels(MainActivity.this);
                 int btnBottom = mIncorrectDragBtn.getBottom();

@@ -12,12 +12,12 @@
         android:text="test"/>
 
     <com.example.custom_circle.widget.ProgressCircle
-        android:id="@+id/progressCircle"
+        android:id="@+id/progressCircle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <com.example.custom_circle.widget.ProgressCircle
-        android:id="@+id/progressCircle"
+        android:id="@+id/progressCircle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         progressCircle:circleBorderColor="#ff0000" />
