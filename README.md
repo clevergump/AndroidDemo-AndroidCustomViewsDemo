@@ -5,6 +5,7 @@
 - <a href="#customcircle">CustomCircle 自定义圆</a>
 - <a href="#progresscircle">ProgressCircle 带进度指示功能的自定义圆</a>
 - <a href="#dragandmoveview">DragAndMoveView 跟随手指一起移动的控件</a>
+- <a href="#myviewpagerdemo">MyViewPagerDemo 仿Android原生控件ViewPager制作的一个简易版的 ViewPager demo</a>
 
 
 
@@ -70,7 +71,9 @@
 
 # <span id="progresscircle">ProgressCircle</span>   
 
-A custom view for showing progress-percentage. Refer [here](https://github.com/clevergump/Android-ProgressCircle) for more details.   
+A custom view for showing progress-percentage. Click **[HERE](https://github.com/clevergump/Android-ProgressCircle)** for more details.   
+
+一个能显示进度百分比的自定义圆. 点击**[这里](https://github.com/clevergump/Android-ProgressCircle)**查看详情.
 
 ![ProgressCircle-running_image](https://github.com/clevergump/Android-ProgressCircle/blob/master/sample/image/progresscircle_in_image_loading.gif)
 
@@ -152,6 +155,17 @@ A custom view for showing progress-percentage. Refer [here](https://github.com/c
 ### 运行效果图:   
 
 ![运行效果图][DragAndMoveView 自定义随手指的拖动一起移动的控件-运行效果图]
+
+---
+
+# <span id="myviewpagerdemo">MyViewPagerDemo</span>
+A simple version of Android official ViewPager just for learning purpose, where bugs may exist and more enhancement and extensible functions will be added in the future. Click **[HERE](https://github.com/clevergump/AndroidDemo-MyViewPagerDemo)** for more details.   
+
+仿Android原生控件ViewPager制作的一个简易版的 ViewPager demo, 会进一步完善. 当然目前的版本可能存在一定的 bug. 点击**[这里](https://github.com/clevergump/AndroidDemo-MyViewPagerDemo)**查看详情.
+
+### 运行效果图:   
+![running_effect](https://github.com/clevergump/AndroidDemo-MyViewPagerDemo/blob/master/app/image/running_effect.gif)
+
 
 ---
 
