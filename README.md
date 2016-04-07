@@ -72,10 +72,14 @@
 # <span id="progresscircle">ProgressCircle</span>   
 
 A custom view for showing progress-percentage. Click **[HERE](https://github.com/clevergump/Android-ProgressCircle)** for more details.   
+一个能显示进度百分比的自定义圆. 点击**[这里](https://github.com/clevergump/Android-ProgressCircle)**查看详情.   
 
-一个能显示进度百分比的自定义圆. 点击**[这里](https://github.com/clevergump/Android-ProgressCircle)**查看详情.
+### 运行效果图:   
+![progresscircle_running](https://github.com/clevergump/Android-ProgressCircle/blob/master/sample/image/progresscircle_running.gif)   
 
-![ProgressCircle-running_image](https://github.com/clevergump/Android-ProgressCircle/blob/master/sample/image/progresscircle_in_image_loading.gif)
+该自定义控件也可用于图片加载进度的显示, 效果图如下:   
+
+![ProgressCircle-running_in_image_loading](https://github.com/clevergump/Android-ProgressCircle/blob/master/sample/image/progresscircle_in_image_loading.gif)
 
 ---
 
