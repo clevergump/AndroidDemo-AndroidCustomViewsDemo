@@ -145,7 +145,9 @@ A custom view for showing progress-percentage. Click **[HERE](https://github.com
 	view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
         @Override
         public void onGlobalLayout() {
-            view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+       	    // removeGlobalOnLayoutListener()----since API-1
+       	    // removeOnGlobalLayoutListener()----since API-16
+            view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
             int width = view.getMeasuredWidth();
             int height = view.getMeasuredHeight();
             int left = view.getLeft();
